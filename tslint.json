@@ -80,7 +80,7 @@
 		],
 		"eofline": false,
 		"indent": [
-			true,
+			false,
 			"tabs"
 		],
 		"max-line-length": [

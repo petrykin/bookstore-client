@@ -4,30 +4,37 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/postsActions';
 import { Post } from '../components/Post/Post';
 
-const PostsPage: React.FC<PostState> = ({ posts, loading, hasErrors, dispatch }) => {
-  
+type PostsPageProps = PostState & {
+  fetchPosts: () => void
+};
+
+const PostsPage: React.FC<PostsPageProps> = ({ posts, loading, hasErrors, fetchPosts }) => {
   useEffect(() => {
-  	dispatch(fetchPosts());
-  }, [dispatch]);
+    fetchPosts();
+  }, [fetchPosts]);
 
   const renderPosts = () => {
-    if (loading) return <p>Loading posts...</p>
-    if (hasErrors) return <p>Unable to display posts.</p>
-    return posts.map((post) => <Post key={post.id} post={post} />)
-  }
+    if (loading) return <p>Loading posts...</p>;
+    if (hasErrors) return <p>Unable to display posts</p>;
+    return posts && posts.map((post) => <Post key={ post.id } post={ post } />);
+  };
 
   return (
-	<section>
-	  	<h1>Posts</h1>
-	  	{ renderPosts() }
-	</section>
-  )
-}
+    <section>
+      <h1>Posts</h1>
+      { renderPosts() }
+    </section>
+  );
+};
 
-const mapStateToProps = (state: PostState): PostState => ({
+const mapStateToProps = (state: { posts: PostState }): PostState => ({
   posts: state.posts.posts,
   loading: state.posts.loading,
-  hasErrors: state.posts.hasErrors,
-})
+  hasErrors: state.posts.hasErrors
+});
 
-export default connect(mapStateToProps)(PostsPage);
+const mapDispatchToProps = {
+  fetchPosts
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PostsPage);

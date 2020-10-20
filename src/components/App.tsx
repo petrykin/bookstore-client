@@ -5,15 +5,15 @@ import DashboardPage from '../pages/DashboardPage';
 import PostsPage from '../pages/PostsPage';
 
 const App: React.FC = () => {
-	return (
-	    <Router>
-		      <Switch>
-			        <Route exact path="/" component = { DashboardPage } />
-			        <Route exact path="/posts" component = { PostsPage } />
-			        <Redirect to="/" />
-		      </Switch>
-	    </Router>
-  )
-}
+  return (
+    <Router>
+      <Switch>
+        <Route exact path = '/' component = { DashboardPage } />
+        <Route exact path = '/posts' component = { PostsPage } />
+        <Redirect to = '/' />
+      </Switch>
+    </Router>
+  );
+};
 
 export default App;
