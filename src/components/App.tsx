@@ -1,15 +1,19 @@
 import React from 'react';
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
-import '../styles/index.css';
+import DashboardPage from '../pages/DashboardPage';
+import PostsPage from '../pages/PostsPage';
 
-class App extends React.PureComponent {
-	render() {
-		return (
-			<div>
-				<h1>Hello World!</h1>
-			</div>
-		);
-	}
+const App: React.FC = () => {
+	return (
+	    <Router>
+		      <Switch>
+			        <Route exact path="/" component = { DashboardPage } />
+			        <Route exact path="/posts" component = { PostsPage } />
+			        <Redirect to="/" />
+		      </Switch>
+	    </Router>
+  )
 }
 
 export default App;
