@@ -17,6 +17,12 @@ module.exports = {
     extensions: ['.ts', '.tsx', '.js']
   },
 
+  devServer: {
+    historyApiFallback: true,
+    contentBase: './',
+    hot: true
+  },
+
   module: {
     rules: [
 

@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { fetchPosts } from '../actions/postsActions';
 import { Post } from '../components/Post/Post';
 
-type PostsPageProps = PostState & {
+type PostsPageProps = PostsState & {
   fetchPosts: () => void
 };
 
@@ -27,7 +27,7 @@ const PostsPage: React.FC<PostsPageProps> = ({ posts, loading, hasErrors, fetchP
   );
 };
 
-const mapStateToProps = (state: { posts: PostState }): PostState => ({
+const mapStateToProps = (state: { posts: PostsState }): PostsState => ({
   posts: state.posts.posts,
   loading: state.posts.loading,
   hasErrors: state.posts.hasErrors

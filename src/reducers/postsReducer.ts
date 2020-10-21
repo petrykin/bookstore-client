@@ -1,12 +1,12 @@
 import * as actions from '../actions/postsActions';
 
-export const initialState: PostState = {
+export const initialState: PostsState = {
   posts: [],
   loading: false,
   hasErrors: false
 };
 
-const postsReducer = (state: PostState = initialState, action: PostAction): PostState => {
+const postsReducer = (state: PostsState = initialState, action: PostsAction): PostsState => {
   switch (action.type) {
     case actions.GET_POSTS:
       return {
