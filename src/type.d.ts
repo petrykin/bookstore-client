@@ -1,3 +1,34 @@
+interface IBook {
+  isbn: string;
+  title: string;
+  price: number;
+  coverUrl: string;
+  quantity: number;
+  available: boolean;
+  author: IAuthor;
+}
+
+interface IAuthor {
+  name: string;
+}
+
+type BooksState = {
+  books: Array<IBook> | undefined,
+  loading: boolean,
+  hasErrors: boolean
+};
+
+type BooksAction = {
+  type: string,
+  payload?: Array<IBook>
+};
+
+type DispatchBooksType = (args: BooksAction) => BooksAction;
+
+type AdminBooksPageProps = BooksState & {
+  fetchBooks: () => void
+};
+
 interface IPost {
   userId: number | -1;
   id: number | -1;
