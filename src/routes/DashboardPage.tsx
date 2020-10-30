@@ -19,6 +19,11 @@ const DashboardPage: React.FC = () => (
         View Books
       </Link>
     </section>
+    <section className='comment'>
+      <Link to = '/admin/books'>
+        View Admin Books
+      </Link>
+    </section>
   </section>
 );
 

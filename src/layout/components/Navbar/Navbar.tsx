@@ -10,7 +10,8 @@ const Navbar: React.FC = () => {
         </div>
         <div>
           <Link to = '/'>Dashboard</Link>
-          <Link to = '/books'>Books</Link>
+          <Link to = '/admin/books'>ABs</Link>
+          <Link to = '/books'>UBs</Link>
           <Link to = '/auth'>Auth Mock</Link>
         </div>
       </section>

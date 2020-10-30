@@ -1,22 +1,24 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { BookRow } from '../components/Book/BookRow';
+import { BookCard } from '../components/Book/BookCard/BookCard';
 
 import { fetchBooks } from '../redux/actions/booksActions';
 
-const AdminBooksPage: React.FC<AdminBooksPageProps> = ({ books, loading, hasErrors }) => {
+const UserBooksPage: React.FC<UserBooksPageProps> = ({ books, loading, hasErrors }) => {
 
   const renderBooks = (): React.ReactNode | React.ReactNodeArray => {
     if (loading) return <p>Loading posts...</p>;
     if (hasErrors) return <p>Unable to display posts</p>;
-    return books && books.map((book) => <BookRow key={ book.isbn } book={ book } />);
+    return books && books.map((book) => <BookCard key={ book.isbn } book={ book } />);
   };
 
   return (
-    <section className='admin-page'>
-      <h1>Admin Books</h1>
-      { renderBooks() }
+    <section className='page'>
+      <h1>User Books</h1>
+      <div className='wrapper display-flex'>
+        { renderBooks() }
+      </div>
     </section>
   );
 };
@@ -31,4 +33,4 @@ const mapDispatchToProps = {
   fetchBooks
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(AdminBooksPage);
+export default connect(mapStateToProps, mapDispatchToProps)(UserBooksPage);

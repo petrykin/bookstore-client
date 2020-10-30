@@ -2,6 +2,7 @@ interface IBook {
   isbn: string;
   title: string;
   price: number;
+  description: string;
   coverUrl: string;
   quantity: number;
   available: boolean;
@@ -26,6 +27,10 @@ type BooksAction = {
 type DispatchBooksType = (args: BooksAction) => BooksAction;
 
 type AdminBooksPageProps = BooksState & {
+  fetchBooks: () => void
+};
+
+type UserBooksPageProps = BooksState & {
   fetchBooks: () => void
 };
 

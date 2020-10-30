@@ -7,7 +7,7 @@ type BookRowProps = {
 
 export const BookRow: React.FC<BookRowProps> = ({ book }) => {
   return (
-    <article className = 'post-excerpt display-flex'>
+    <article className = 'post-excerpt flex'>
       <img src={ book.coverUrl } alt='book cover'/>
       <div className='book-row-content'>
         <h2>{ book.title }</h2>
@@ -16,7 +16,7 @@ export const BookRow: React.FC<BookRowProps> = ({ book }) => {
         <h3>Available count: { book.quantity }</h3>
         <h2>${ book.price }</h2>
         <div className='btn-group'>
-          <Link to='/books' className='button btn-success'>Edit</Link>
+          <Link to='/books' className='button'><i className='fa fa-edit' />Edit</Link>
         </div>
       </div>
     </article>
