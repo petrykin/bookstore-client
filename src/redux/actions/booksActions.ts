@@ -19,10 +19,16 @@ export const fetchBooks = () => async (dispatch: DispatchBooksType) => {
   dispatch(getBooks());
 
   try {
-    const response = await fetch('');
+    const response = await fetch('http://bookstoreapi-env.eba-gwmxm6se.us-east-1.elasticbeanstalk.com/api/books?size=10',
+{
+      'method': 'GET',
+      'headers': {
+        'Authorization': 'Basic YWRtaW46YWRtaW4='
+      }
+    });
     const data = await response.json();
 
-    dispatch(getBooksSuccess(data));
+    dispatch(getBooksSuccess(data._embedded.books));
   } catch (error) {
     dispatch(getBooksFailure());
   }

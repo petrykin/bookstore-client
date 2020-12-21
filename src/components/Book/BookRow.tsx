@@ -11,7 +11,7 @@ export const BookRow: React.FC<BookRowProps> = ({ book }) => {
       <img src={ book.coverUrl } alt='book cover'/>
       <div className='book-row-content'>
         <h2>{ book.title }</h2>
-        <h3>Author: { book.author.name }</h3>
+        <h3>Author: { book.author.fullName }</h3>
         <h3>ISBN: { book.isbn }</h3>
         <h3>Available count: { book.quantity }</h3>
         <h2>${ book.price }</h2>

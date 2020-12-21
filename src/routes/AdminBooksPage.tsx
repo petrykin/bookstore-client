@@ -1,11 +1,13 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 
 import { BookRow } from '../components/Book/BookRow';
 
 import { fetchBooks } from '../redux/actions/booksActions';
 
-const AdminBooksPage: React.FC<AdminBooksPageProps> = ({ books, loading, hasErrors }) => {
+const AdminBooksPage: React.FC<AdminBooksPageProps> = ({ books, loading, hasErrors, fetchBooks }) => {
+
+  useEffect(() => { books && books.length === 0 && fetchBooks(); }, []);
 
   const renderBooks = (): React.ReactNode | React.ReactNodeArray => {
     if (loading) return <p>Loading posts...</p>;

@@ -12,7 +12,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book }) => {
       <div className='card-content'>
         <h3>{ book.title }</h3>
         <div className='subtitle'>
-          { book.author.name }
+          { book.author.fullName }
         </div>
         <h4>
           ISBN: { book.isbn }

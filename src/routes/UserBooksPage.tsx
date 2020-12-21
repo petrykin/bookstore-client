@@ -1,17 +1,19 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { connect } from 'react-redux';
 
 import { BookCard } from '../components/Book/BookCard/BookCard';
 
 import { fetchBooks } from '../redux/actions/booksActions';
 
-const UserBooksPage: React.FC<UserBooksPageProps> = ({ books, loading, hasErrors }) => {
+const UserBooksPage: React.FC<UserBooksPageProps> = ({ books, loading, hasErrors, fetchBooks }) => {
 
   const renderBooks = (): React.ReactNode | React.ReactNodeArray => {
     if (loading) return <p>Loading posts...</p>;
     if (hasErrors) return <p>Unable to display posts</p>;
     return books && books.map((book) => <BookCard key={ book.isbn } book={ book } />);
   };
+
+  useEffect(() => { books && books.length === 0 && fetchBooks(); }, []);
 
   return (
     <section className='page'>

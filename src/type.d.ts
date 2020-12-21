@@ -10,7 +10,7 @@ interface IBook {
 }
 
 interface IAuthor {
-  name: string;
+  fullName: string;
 }
 
 type BooksState = {
