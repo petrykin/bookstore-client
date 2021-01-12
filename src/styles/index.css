@@ -155,3 +155,7 @@ section h1 {
   z-index: 1;
   display: flex;
 }
+
+.cart-item {
+  width: auto;
+}

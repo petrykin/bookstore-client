@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { IBook } from '../../type';
 
@@ -8,7 +8,7 @@ type BookCardProps = {
   book: IBook
 };
 
-export const BookCard: React.FC<BookCardProps> = ({ book }) => {
+export const BookCard: FC<BookCardProps> = ({ book }) => {
   return (
     <div className='card'>
       <div className='card-content'>
@@ -34,14 +34,6 @@ export const BookCard: React.FC<BookCardProps> = ({ book }) => {
           <div className='card-details-inner'>
             <div className='read-more'>
               <a className='button' href='#'><i className='fa fa-shopping-cart' /> Add to cart</a>
-            </div>
-            <div className='options'>
-              <div className='comments'>
-                <a href='#'><i className='fa fa-comments-o' />16 comments</a>
-              </div>
-              <div className='likes'>
-                <a href='#'><i className='fa fa-heart-o' />322 likes</a>
-              </div>
             </div>
           </div>
         </div>

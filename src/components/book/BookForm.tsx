@@ -171,7 +171,7 @@ export const BookForm: FC<IBookAdminViewProps> = ({ selectedId, setSelectedId, i
           onChange={visible.onChange}
           readOnly={!inEdit && !!selectedId}
         />
-        <Button type='submit' color='green' disabled={!inEdit && !!selectedId} onClick={onSubmit}>Submit</Button>
+        <Button type='submit' primary disabled={!inEdit && !!selectedId} onClick={onSubmit}>Submit</Button>
       </Form>
     </section>
   );

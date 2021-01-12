@@ -3,6 +3,7 @@
 		"tslint-immutable"
 	],
 	"rules": {
+		"import-spacing": true,
 		"no-var-keyword": true,
 		"no-parameter-reassignment": true,
 		"typedef": false,
@@ -15,10 +16,7 @@
 		"no-class": false,
 		"no-mixed-interface": false,
 		"no-expression-statement": false,
-		"member-ordering": [
-			true,
-			"variables-before-functions"
-		],
+		"member-ordering": true,
 		"no-any": false,
 		"no-inferrable-types": [
 			false

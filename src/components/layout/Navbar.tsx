@@ -18,8 +18,12 @@ export const Navbar: FC = () => {
         </div>
         <div>
           {user?.email &&
-            <Link to='/books/manage'><Icon name='edit outline' /> Manage Books</Link>}
+            <Link to='/books/manage'><Icon name='edit outline' /> Manage Books</Link>
+          }
           <Link to='/books'><Icon name='book' /> Books</Link>
+          {user?.email &&
+            <Link to='/cart'><Icon name='cart' /> Cart</Link>
+          }
           {!user?.email ? (
             <Link to='/' className='navbar-item' onClick={() => login('admin@example.com', 'password')}>
               Login

@@ -2,10 +2,10 @@ import React, { useContext } from 'react';
 
 import { BookContext } from '../../context/BookContext';
 
-import { BookCard } from './BookCard';
+import { BookCard } from '../book/BookCard';
 import { IBookContext } from '../../type';
 
-export const UserBooksPage: React.FC = () => {
+export const UserBooksView: React.FC = () => {
   const { bookState: { books } } = useContext<IBookContext>(BookContext);
 
   const renderBooks = (): React.ReactNode | React.ReactNodeArray => {

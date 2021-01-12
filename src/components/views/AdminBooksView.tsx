@@ -2,8 +2,8 @@ import React, { FC, useState } from 'react';
 
 import { Grid, GridColumn, Header, Segment } from 'semantic-ui-react';
 
-import { BookTable } from '../books/BookTable';
-import { BookForm } from '../books/BookForm';
+import { BookTable } from '../book/BookTable';
+import { BookForm } from '../book/BookForm';
 
 export const AdminBooksView: FC = () => {
   const [selectedId, setSelectedId] = useState<number | null>();
