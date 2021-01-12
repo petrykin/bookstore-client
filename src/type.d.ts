@@ -1,96 +1,58 @@
+import React, {Dispatch} from 'react';
+
 interface IBook {
-  isbn: string;
+  id?: number;
   title: string;
-  price: number;
+  isbn: string;
   description: string;
+  price: number;
+  currency: string;
   coverUrl: string;
   quantity: number;
-  available: boolean;
-  author: IAuthor;
+  author: string;
+  visible: boolean;
 }
 
-interface IAuthor {
-  fullName: string;
+interface IBookState {
+  isLoading: boolean;
+  books: IBook[];
 }
 
-type BooksState = {
-  books: Array<IBook> | undefined,
-  loading: boolean,
-  hasErrors: boolean
-};
-
-type BooksAction = {
-  type: string,
-  payload?: Array<IBook>
-};
-
-type DispatchBooksType = (args: BooksAction) => BooksAction;
-
-type AdminBooksPageProps = BooksState & {
-  fetchBooks: () => void
-};
-
-type UserBooksPageProps = BooksState & {
-  fetchBooks: () => void
-};
-
-interface IPost {
-  userId: number | -1;
-  id: number | -1;
-  title: string | '';
-  body: string | '';
+interface IBookActions {
+  addBook: (arg: IBook) => void;
+  editBook: (arg: IBook) => void;
 }
 
-interface IComment {
-  postId: number;
-  id: number;
-  name: string;
+interface IBookContext {
+  bookState: IBookState;
+  bookActions: IBookActions;
+}
+
+interface IBookAdminViewProps {
+  selectedId: number | null | undefined;
+  setSelectedId: Dispatch<React.SetStateAction<number | null | undefined>>;
+  inEdit: boolean;
+  setInEdit: Dispatch<React.SetStateAction<boolean>>;
+}
+
+type LayoutProps = {
+  children: React.ReactNode;
+};
+
+interface IUser {
   email: string;
-  body: string;
 }
 
-type PostsState = {
-  posts: Array<IPost> | undefined,
-  loading: boolean,
-  hasErrors: boolean
-};
+interface IUserState {
+  user: IUser | null;
+}
 
-type PostState = {
-  post: IPost | undefined,
-  loading: boolean,
-  hasErrors: boolean
-};
+interface IUserActions {
+  login: (username: string, password: string) => void;
+  logout: (arg: React.MouseEvent) => void;
+}
 
-type CommentsState = {
-  comments: Array<IComment> | undefined,
-  loading: boolean,
-  hasErrors: boolean
-};
-
-type PostCommentsState = {
-  post: IPost | undefined,
-  comments: Array<IComment> | undefined,
-  loading: {post: boolean, comments: boolean},
-  hasErrors: {post: boolean, comments: boolean}
-};
-
-type PostsAction = {
-  type: string,
-  payload?: Array<IPost>
-};
-
-type CommentsAction = {
-  type: string,
-  payload?: Array<IComment>
-};
-
-type PostAction = {
-  type: string,
-  payload?: IPost
-};
-
-type DispatchPostsType = (args: PostsAction) => PostsAction;
-
-type DispatchPostType = (args: PostAction) => PostAction;
-
-type DispatchCommentsType = (args: CommentsAction) => CommentsAction;
+interface IUserContext {
+  userState: IUserState;
+  userActions: IUserActions;
+}

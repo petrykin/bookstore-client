@@ -1,5 +1,7 @@
 import React from 'react';
 
+import { IBook } from '../../type';
+
 import './BookCard.css';
 
 type BookCardProps = {
@@ -12,7 +14,7 @@ export const BookCard: React.FC<BookCardProps> = ({ book }) => {
       <div className='card-content'>
         <h3>{ book.title }</h3>
         <div className='subtitle'>
-          { book.author.fullName }
+          { book.author }
         </div>
         <h4>
           ISBN: { book.isbn }

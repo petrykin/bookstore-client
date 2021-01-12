@@ -19,6 +19,10 @@ img {
   display: inline-block;
 }
 
+td > img {
+  margin: 0 auto;
+}
+
 .book-row-content {
   display: inline-block;
   margin-left: 20px;
@@ -71,6 +75,7 @@ nav a:first-of-type {
 
 nav a:hover {
   background: #222;
+  color: #e76767;
 }
 
 a {
