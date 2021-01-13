@@ -9,21 +9,24 @@ import { BookProvider } from '../context/BookContext';
 import { UserProvider } from '../context/UserContext';
 import { PrivateRoute } from './PrivateRoute';
 import { LoginMock } from './mock/LoginMock';
+import { AmplifyAuthenticator } from '@aws-amplify/ui-react/lib-esm/components';
 
 export const App: FC = () => {
   return (
-    <UserProvider>
-      <BookProvider>
-        <Layout>
-          <Switch>
-            <PrivateRoute exact path = '/books/manage' component = { AdminBooksView } />
-            <PrivateRoute exact path = '/cart' component = { CartView } />
-            <Route exact path = '/books' component = { UserBooksView } />
-            <Route exact path = '/login' component = { LoginMock } />
-            <Redirect exact to = '/books' />
-          </Switch>
-        </Layout>
-      </BookProvider>
-    </UserProvider>
+    <AmplifyAuthenticator>
+      <UserProvider>
+        <BookProvider>
+          <Layout>
+            <Switch>
+              <PrivateRoute exact path = '/books/manage' component = { AdminBooksView } />
+              <PrivateRoute exact path = '/cart' component = { CartView } />
+              <Route exact path = '/books' component = { UserBooksView } />
+              <Route exact path = '/login' component = { LoginMock } />
+              <Redirect exact to = '/books' />
+            </Switch>
+          </Layout>
+        </BookProvider>
+      </UserProvider>
+    </AmplifyAuthenticator>
     );
 };
