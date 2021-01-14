@@ -6,14 +6,14 @@ type PrivateRouteProps = RouteProps & {
   component: React.FC;
 };
 
-export const PrivateRoute: React.FC<PrivateRouteProps> = ({ component: Component, ...rest }) => {
-  const {userState: { signedin } } = useContext(UserContext);
+export const AdminRoute: React.FC<PrivateRouteProps> = ({ component: Component, ...rest }) => {
+  const {userState: { signedin, isAdmin } } = useContext(UserContext);
 
   return (
     <Route {...rest} render={(props) => (
-      signedin
+      signedin && isAdmin
         ? <Component {...props} />
-        : <Redirect to='/login' />
+        : <Redirect to='/books' />
     )} />
   );
 };

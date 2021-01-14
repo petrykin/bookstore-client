@@ -1,55 +1,50 @@
 import React, { createContext, FC, useState } from 'react';
-import { IUser, IUserContext } from '../type';
-import jwt_decode from 'jwt-decode';
+import { AuthState } from '@aws-amplify/ui-components';
+import { Auth } from 'aws-amplify';
+import { IUserContext } from '../type';
 
 export const UserContext = createContext<IUserContext>({
   userState: {
-    user: null
+    user: null,
+    authState: undefined,
+    signedin: false,
+    isAdmin: false
   },
   userActions: {
-    login: (_username: string, _password: string) => {},
-    logout: (_arg: React.MouseEvent) => {}
+    logout: (_arg: React.MouseEvent) => {},
+    setUser: () => {},
+    setAuthState: () => {}
   }
 });
 
 export const UserProvider: FC = ({ children }) => {
 
-  const [user, setUser] = useState<IUser | null>(JSON.parse(localStorage.getItem('user') || '{}'));
+  const [authState, setAuthState] = useState<AuthState>();
+  const [user, setUser] = useState<object | undefined | null>();
 
-  const handleLogin = async (username: string, password: string) => {
-      const res = await fetch('http://localhost:3001/login', {
-        'method': 'POST',
-        'headers': {
-          'Content-Type': 'application/json'
-        },
-        'body': JSON.stringify({'email': username, 'password': password})
-      }).catch(() => ({ status: 401, message: 'Unauthorized' }));
-      // @ts-ignore
-    const data = await res.json();
-      // @ts-ignore
-    const { email } = jwt_decode(data.accessToken);
-      const user = {
-        email,
-        token: data.accessToken,
-        accessLevel: email === 'admin@example.com' ? 0 : 1
-      };
-
-      setUser(user);
-      localStorage.setItem('user', JSON.stringify(user));
+  const handleLogout = async (e: React.MouseEvent) => {
+    e.preventDefault();
+    await Auth.signOut();
   };
 
-  const handleLogout = (e: React.MouseEvent) => {
-      e.preventDefault();
-      setUser(null);
-      localStorage.removeItem('user');
-  };
+  const signedin = authState === 'signedin';
+
+  const isAdminRole = (role: string) => role === 'bookstore_admin';
+
+  const isAdmin = user?.signInUserSession.idToken.payload['cognito:groups'].findIndex(isAdminRole) !== -1;
 
   return (
     <UserContext.Provider value={{
-      userState: { user },
+      userState: {
+        user,
+        authState,
+        signedin,
+        isAdmin
+      },
       userActions: {
-        login: handleLogin,
-        logout: handleLogout
+        logout: handleLogout,
+        setUser,
+        setAuthState
       }
     }}>
       { children }

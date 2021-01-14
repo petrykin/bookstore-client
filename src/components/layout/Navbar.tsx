@@ -5,7 +5,7 @@ import { UserContext } from '../../context/UserContext';
 import { IUserContext } from '../../type';
 
 export const Navbar: FC = () => {
-  const { userState: { user }, userActions: { login, logout } } = useContext<IUserContext>(UserContext);
+  const { userState: { user, signedin, isAdmin }, userActions: { logout } } = useContext<IUserContext>(UserContext);
 
   return (
     <nav>
@@ -14,25 +14,25 @@ export const Navbar: FC = () => {
           <Link to='/'>Book Store</Link>
         </div>
         <div>
-          <h4>{user?.email && `Hello, ${ user.email }`}</h4>
+          <h4 style={{color: 'white'}}>{signedin && `Hello, ${ user?.signInUserSession.idToken.payload.name }`}</h4>
         </div>
-        <div>
-          {user?.email &&
-            <Link to='/books/manage'><Icon name='edit outline' /> Manage Books</Link>
-          }
-          <Link to='/books'><Icon name='book' /> Books</Link>
-          {user?.email &&
-            <Link to='/cart'><Icon name='cart' /> Cart</Link>
-          }
-          {!user?.email ? (
-            <Link to='/' className='navbar-item' onClick={() => login('admin@example.com', 'password')}>
-              Login
+        <div style={{display: 'flex'}}>
+          {
+            signedin && isAdmin && <Link to='/books/manage'>
+              <Icon name='edit outline' /> Manage Books
             </Link>
-          ) : (
+          }
+          <Link to='/books'>
+            <Icon name='book' /> Books
+          </Link>
+          {
+            signedin && <Link to='/cart'>
+              <Icon name='cart' /> Cart
+            </Link>
+          }
             <Link to='/' onClick={logout} className='navbar-item'>
-              Logout
+              Sign Out
             </Link>
-          )}
         </div>
       </section>
     </nav>

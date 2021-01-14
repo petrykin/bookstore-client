@@ -1,4 +1,5 @@
 import React, {Dispatch} from 'react';
+import {AuthState} from '@aws-amplify/ui-components';
 
 interface IBook {
   id?: number;
@@ -39,17 +40,17 @@ type LayoutProps = {
   children: React.ReactNode;
 };
 
-interface IUser {
-  email: string;
-}
-
 interface IUserState {
-  user: IUser | null;
+  user: object | undefined | null;
+  authState: AuthState | undefined;
+  signedin: boolean;
+  isAdmin: boolean;
 }
 
 interface IUserActions {
-  login: (username: string, password: string) => void;
   logout: (arg: React.MouseEvent) => void;
+  setUser: any;
+  setAuthState: any;
 }
 
 interface IUserContext {
